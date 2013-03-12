@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--This file was created with the Microsoft Visual Programming Language.-->
+<Manifest xmlns:io="http://schemas.microsoft.com/robotics/2007/07/lego/nxt/io.html" xmlns:user="http://schemas.microsoft.com/robotics/2012/10/hitechnic/nxt/prototypeBoard.user.html" xmlns:dssp="http://schemas.microsoft.com/xw/2004/10/dssp.html" xmlns:this="urn:uuid:57511f63-bf52-4145-a94c-489ca5006cd9" xmlns="http://schemas.microsoft.com/xw/2004/10/manifest.html">
+  <CreateServiceList>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.microsoft.com/robotics/2007/07/lego/nxt/io.html</dssp:Contract>
+      <dssp:PartnerList />
+      <Name>this:LegoBrickIOv2</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.microsoft.com/robotics/2012/10/hitechnic/nxt/prototypeBoard.user.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2012/10/hitechnic/nxt/prototypeBoard.user.html</dssp:Contract>
+          <dssp:Service>userhitechnicprototypeboard.config.xml</dssp:Service>
+          <dssp:PartnerList />
+          <dssp:Name>dssp:StateService</dssp:Name>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:UserHiTechnicPrototypeBoard</Name>
+    </ServiceRecordType>
+  </CreateServiceList>
+</Manifest>

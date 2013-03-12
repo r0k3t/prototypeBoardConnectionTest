@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--This file was created with the Microsoft Visual Programming Language.-->
+<Manifest xmlns:user="http://schemas.microsoft.com/robotics/2007/07/lego/nxt/brick.user.html" 
+xmlns:prototypeboardconnectiontest="http://schemas.tempuri.org/2012/10/prototypeboardconnectiontest.html" 
+xmlns:dssp="http://schemas.microsoft.com/xw/2004/10/dssp.html" 
+xmlns:this="urn:uuid:4faab98b-8c64-474d-840d-fb49c473131f" 
+xmlns="http://schemas.microsoft.com/xw/2004/10/manifest.html">
+  <CreateServiceList>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.tempuri.org/2012/10/prototypeboardconnectiontest.html</dssp:Contract>
+      <dssp:PartnerList />
+      <Name>this:prototypeboardconnectiontest</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.microsoft.com/robotics/2007/07/lego/nxt/brick.user.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2007/07/lego/nxt/brick.user.html</dssp:Contract>
+          <dssp:Service>userlegonxtbrickv2.config.xml</dssp:Service>
+          <dssp:PartnerList />
+          <dssp:Name>dssp:StateService</dssp:Name>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:UserLegoNXTBrickv2</Name>
+    </ServiceRecordType>
+  </CreateServiceList>
+</Manifest>

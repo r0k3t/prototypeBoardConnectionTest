@@ -1,0 +1,321 @@
+﻿<Window x:Class="prototypeBoardConnectionTest.ControlWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:PrototypeBoard="clr-namespace:Microsoft.Robotics.Services.Sample.HiTechnic.PrototypeBoard.Proxy;assembly=User.HiTechnic.Y2007.M07.Proxy"
+        xmlns:local="clr-namespace:prototypeBoardConnectionTest"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Height="400" Width="600" ShowInTaskbar="False" ResizeMode="NoResize" Topmost="True" Title="HiTechnic Prototype Board" ToolTip="Configure HiTechnic Prototype Board (MSRDS)" WindowStyle="None">
+    <Window.Resources>
+    	<ResourceDictionary>
+    		<ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <local:LedStatusToTemplateConverter x:Key="ledConverter"/>
+                </ResourceDictionary>
+                <ResourceDictionary Source="Style.xaml"/>
+    		</ResourceDictionary.MergedDictionaries>
+    		<ObjectDataProvider x:Key="EnumValues" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+    			<ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="PrototypeBoard:LedStatus" />
+    			</ObjectDataProvider.MethodParameters>
+    		</ObjectDataProvider>
+            <DataTemplate x:Key="LedDataTemplate1">
+                <Grid>
+                	<Grid.ColumnDefinitions>
+                		<ColumnDefinition></ColumnDefinition>
+						<ColumnDefinition></ColumnDefinition>
+					</Grid.ColumnDefinitions>
+                	<Path Grid.Column="1" Data="M0.5,0.5 L4.8080001,0.5 4.8080001,1.6749998 14.108333,1.7083333 C14.260586,1.6797702 14.814669,1.675 14.971,1.6749998 17.472298,1.675 19.5,5.4208097 19.5,10.0415 19.5,14.66219 17.512334,17.641999 14.975,18.375 14.82481,18.418388 13.375,18.375 13.375,18.375 L4.8080001,18.408001 4.8080001,19.5 0.5,19.5 z" HorizontalAlignment="Stretch" Stretch="Fill" Stroke="#FF7B7B7B" Width="Auto" StrokeThickness="0.2">
+                		<Path.Fill>
+                			<RadialGradientBrush RadiusY="0.375" RadiusX="1.967">
+                				<GradientStop Color="#FFF6F6F6" Offset="0.173"/>
+                				<GradientStop Color="#FF6F6F6F" Offset="1"/>
+                			</RadialGradientBrush>
+                		</Path.Fill>
+                	</Path>
+                	<Rectangle Grid.Column="1" HorizontalAlignment="Left" Stroke="#FF7B7B7B" StrokeThickness="0" Width="4.717">
+                		<Rectangle.Fill>
+                			<RadialGradientBrush RadiusY="0.381" RadiusX="3.639">
+                				<GradientStop Color="#FFEEEEEE" Offset="0.335"/>
+                				<GradientStop Color="Gray" Offset="1"/>
+                			</RadialGradientBrush>
+                		</Rectangle.Fill>
+                	</Rectangle>
+					
+                	<Rectangle  Height="1" Margin="0,0,0,13.58" Stroke="Black" StrokeThickness="0" VerticalAlignment="Bottom" Width="30">
+                		<Rectangle.Fill>
+                			<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                				<GradientStop Color="#FFEEEEEE" Offset="0.335"/>
+                				<GradientStop Color="Black" Offset="1"/>
+                			</LinearGradientBrush>
+                		</Rectangle.Fill>
+                	</Rectangle>
+                	<Rectangle  Height="1" Margin="5.812,0,0.042,5.08" Stroke="Black" StrokeThickness="0" VerticalAlignment="Bottom" Width="Auto" d:LayoutOverrides="VerticalAlignment">
+                		<Rectangle.Fill>
+                			<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                				<GradientStop Color="#FFEEEEEE" Offset="0.335"/>
+                				<GradientStop Color="Black" Offset="1"/>
+                			</LinearGradientBrush>
+                		</Rectangle.Fill>
+                	</Rectangle>
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="SelectedLedDataTemplate1">
+            	<Grid>
+                	<Grid.ColumnDefinitions>
+                		<ColumnDefinition></ColumnDefinition>
+						<ColumnDefinition></ColumnDefinition>
+					</Grid.ColumnDefinitions>
+					
+					<Path Grid.Column="1" Data="M0.5,0.5 L4.8080001,0.5 4.8080001,1.6749998 14.108333,1.7083333 C14.260586,1.6797702 14.814669,1.675 14.971,1.6749998 17.472298,1.675 19.5,5.4208097 19.5,10.0415 19.5,14.66219 17.512334,17.641999 14.975,18.375 14.82481,18.418388 13.375,18.375 13.375,18.375 L4.8080001,18.408001 4.8080001,19.5 0.5,19.5 z" 
+						Fill="{Binding Path=DataContext.SelectedLedStatus,
+                        RelativeSource={RelativeSource AncestorType={x:Type Window}},
+                        Converter={StaticResource ledConverter}}"
+						HorizontalAlignment="Stretch" Stretch="Fill" Stroke="#FF7B7B7B" Width="Auto" StrokeThickness="0.2">
+                	</Path>
+                	<Rectangle Grid.Column="1" HorizontalAlignment="Left" Stroke="#FF7B7B7B" StrokeThickness="0" Width="4.717"
+						Fill="{Binding Path=DataContext.SelectedLedStatus,
+                        RelativeSource={RelativeSource AncestorType={x:Type Window}},
+                        Converter={StaticResource ledConverter}}">
+                	</Rectangle>
+					
+                	<Path Grid.Column="1" Data="M0.5,0.5 L4.8080001,0.5 4.8080001,1.6749998 14.108333,1.7083333 C14.260586,1.6797702 14.814669,1.675 14.971,1.6749998 17.472298,1.675 19.5,5.4208097 19.5,10.0415 19.5,14.66219 17.512334,17.641999 14.975,18.375 14.82481,18.418388 13.375,18.375 13.375,18.375 L4.8080001,18.408001 4.8080001,19.5 0.5,19.5 z" HorizontalAlignment="Stretch" Stretch="Fill" Stroke="#FF7B7B7B" Width="Auto" StrokeThickness="0.2" Opacity="0.45">
+                		<Path.Fill>
+                			<RadialGradientBrush RadiusY="0.375" RadiusX="1.967">
+                				<GradientStop Color="#FFF6F6F6" Offset="0.173"/>
+                				<GradientStop Color="#FF6F6F6F" Offset="1"/>
+                			</RadialGradientBrush>
+                		</Path.Fill>
+                	</Path>
+                	<Rectangle Grid.Column="1" HorizontalAlignment="Left" Stroke="#FF7B7B7B" StrokeThickness="0" Width="4.717" Opacity="0.425">
+                		<Rectangle.Fill>
+                			<RadialGradientBrush RadiusY="0.381" RadiusX="3.639">
+                				<GradientStop Color="#FFEEEEEE" Offset="0.335"/>
+                				<GradientStop Color="Gray" Offset="1"/>
+                			</RadialGradientBrush>
+                		</Rectangle.Fill>
+                	</Rectangle>
+					
+
+					
+                	<Rectangle  Height="1" Margin="0,0,0,13.58" Stroke="Black" StrokeThickness="0" VerticalAlignment="Bottom" Width="30">
+                		<Rectangle.Fill>
+                			<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                				<GradientStop Color="#FFEEEEEE" Offset="0.335"/>
+                				<GradientStop Color="Black" Offset="1"/>
+                			</LinearGradientBrush>
+                		</Rectangle.Fill>
+                	</Rectangle>
+                	<Rectangle  Height="1" Margin="5.812,0,0.042,5.08" Stroke="Black" StrokeThickness="0" VerticalAlignment="Bottom" Width="Auto" d:LayoutOverrides="VerticalAlignment">
+                		<Rectangle.Fill>
+                			<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                				<GradientStop Color="#FFEEEEEE" Offset="0.335"/>
+                				<GradientStop Color="Black" Offset="1"/>
+                			</LinearGradientBrush>
+                		</Rectangle.Fill>
+                	</Rectangle>
+                </Grid>
+               <!-- <Grid>
+                    <Ellipse Stroke="#FFE5E5E5"  Fill="{Binding Path=DataContext.SelectedLedStatus,
+                        RelativeSource={RelativeSource AncestorType={x:Type Window}},
+                        Converter={StaticResource ledConverter}}"/>
+                </Grid>
+-->            </DataTemplate>
+
+            <Style x:Key="LedListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
+                <Setter Property="ContentTemplate" Value="{StaticResource LedDataTemplate1}" />
+                <Setter Property="Margin" Value="0,0,0,2"/>
+                <Style.Triggers>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="ContentTemplate" Value="{StaticResource SelectedLedDataTemplate1}" />
+                    </Trigger>
+                </Style.Triggers>
+                <Style.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent"/>
+                </Style.Resources>
+            </Style>
+            <ControlTemplate x:Key="LabelControlTemplate1" TargetType="{x:Type Label}">
+            	<Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+            		<ContentControl Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2" FontFamily="Narkisim" Foreground="WhiteSmoke"/>
+             	</Grid>
+            </ControlTemplate>
+            <ControlTemplate x:Key="ExitButtonControlTemplate1" TargetType="{x:Type Button}">
+            	<Border CornerRadius="4" Margin="0,2,3,3">
+            		<Border.Background>
+            			<RadialGradientBrush RadiusY="0.828" RadiusX="0.828">
+            				<RadialGradientBrush.RelativeTransform>
+            					<TransformGroup>
+            						<ScaleTransform CenterY="0.5" CenterX="0.5"/>
+            						<SkewTransform CenterY="0.5" CenterX="0.5"/>
+            						<RotateTransform CenterY="0.5" CenterX="0.5"/>
+            						<TranslateTransform X="-0.035" Y="0.062"/>
+            					</TransformGroup>
+            				</RadialGradientBrush.RelativeTransform>
+            				<GradientStop Color="#FF9C9C9C" Offset="0.802"/>
+            				<GradientStop Color="#FFBBBBBB" Offset="0.418"/>
+            				<GradientStop Color="#FFA1A1A1" Offset="0.979"/>
+            			</RadialGradientBrush>
+            		</Border.Background>
+            		<VisualStateManager.VisualStateGroups>
+            			<VisualStateGroup x:Name="CommonStates">
+            				<VisualState x:Name="Normal">
+            					<Storyboard>
+            						<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Direction)" Storyboard.TargetName="border">
+            							<EasingDoubleKeyFrame KeyTime="0" Value="309"/>
+            						</DoubleAnimationUsingKeyFrames>
+            						<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Opacity)" Storyboard.TargetName="border">
+            							<EasingDoubleKeyFrame KeyTime="0" Value="0.305"/>
+            						</DoubleAnimationUsingKeyFrames>
+            					</Storyboard>
+            				</VisualState>
+            				<VisualState x:Name="MouseOver">
+            					<Storyboard>
+            						<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock">
+            							<EasingColorKeyFrame KeyTime="0" Value="White"/>
+            						</ColorAnimationUsingKeyFrames>
+            						<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Color)" Storyboard.TargetName="textBlock1">
+            							<EasingColorKeyFrame KeyTime="0" Value="White"/>
+            						</ColorAnimationUsingKeyFrames>
+            						<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Opacity)" Storyboard.TargetName="textBlock1">
+            							<EasingDoubleKeyFrame KeyTime="0" Value="0.51"/>
+            						</DoubleAnimationUsingKeyFrames>
+            					</Storyboard>
+            				</VisualState>
+            				<VisualState x:Name="Pressed">
+            					<Storyboard>
+            						<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="border">
+            							<EasingDoubleKeyFrame KeyTime="0" Value="0.9"/>
+            						</DoubleAnimationUsingKeyFrames>
+            						<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="border">
+            							<EasingDoubleKeyFrame KeyTime="0" Value="0.9"/>
+            						</DoubleAnimationUsingKeyFrames>
+            						<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock1">
+            							<EasingColorKeyFrame KeyTime="0" Value="White"/>
+            						</ColorAnimationUsingKeyFrames>
+            						<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock">
+            							<EasingColorKeyFrame KeyTime="0" Value="White"/>
+            						</ColorAnimationUsingKeyFrames>
+            						<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Direction)" Storyboard.TargetName="border">
+            							<EasingDoubleKeyFrame KeyTime="0" Value="146"/>
+            						</DoubleAnimationUsingKeyFrames>
+            						<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)" Storyboard.TargetName="border">
+            							<EasingDoubleKeyFrame KeyTime="0" Value="2"/>
+            						</DoubleAnimationUsingKeyFrames>
+            						<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.ShadowDepth)" Storyboard.TargetName="border">
+            							<EasingDoubleKeyFrame KeyTime="0" Value="2"/>
+            						</DoubleAnimationUsingKeyFrames>
+            						<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Opacity)" Storyboard.TargetName="border">
+            							<EasingDoubleKeyFrame KeyTime="0" Value="0.255"/>
+            						</DoubleAnimationUsingKeyFrames>
+            						<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Direction)" Storyboard.TargetName="textBlock1">
+            							<EasingDoubleKeyFrame KeyTime="0" Value="127"/>
+            						</DoubleAnimationUsingKeyFrames>
+            						<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Direction)" Storyboard.TargetName="textBlock">
+            							<EasingDoubleKeyFrame KeyTime="0" Value="298"/>
+            						</DoubleAnimationUsingKeyFrames>
+            					</Storyboard>
+            				</VisualState>
+            				<VisualState x:Name="Disabled"/>
+            			</VisualStateGroup>
+            		</VisualStateManager.VisualStateGroups>
+            		<Grid Margin="2">
+            			<Border x:Name="border" BorderBrush="Black" BorderThickness="0" Margin="0" CornerRadius="3" RenderTransformOrigin="0.5,0.5">
+            				<Border.Effect>
+            					<DropShadowEffect Direction="293" BlurRadius="1" ShadowDepth="1" Opacity="0.335"/>
+            				</Border.Effect>
+            				<Border.RenderTransform>
+            					<TransformGroup>
+            						<ScaleTransform/>
+            						<SkewTransform/>
+            						<RotateTransform/>
+            						<TranslateTransform/>
+            					</TransformGroup>
+            				</Border.RenderTransform>
+            				<Border.Background>
+            					<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            						<GradientStop Color="#FFFF3704" Offset="0.443"/>
+            						<GradientStop Color="#FFFF8161" Offset="0.005"/>
+            					</LinearGradientBrush>
+            				</Border.Background>
+            			</Border>
+            			<TextBlock x:Name="textBlock1" Margin="2.7,4.533,2.667,3.467" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14.667" Foreground="White" Padding="2"><TextBlock.Effect>
+            					<DropShadowEffect Color="#FFFFCFC3" BlurRadius="2" ShadowDepth="2" Direction="321"/>
+            				</TextBlock.Effect><Run Text="Exit"/></TextBlock>
+            			<TextBlock x:Name="textBlock" Margin="2.7,4.533,2.667,3.467" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14.667" Foreground="White" Padding="2"><TextBlock.Effect>
+            					<DropShadowEffect Color="#1EB2B2B2" BlurRadius="1" ShadowDepth="1" Direction="117" Opacity="0.555"/>
+            				</TextBlock.Effect><Run Text="Exit"/></TextBlock>
+            		</Grid></Border>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </Window.Resources>
+	<Window.Background>
+		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+			<GradientStop Color="Gray" Offset="0"/>
+			<GradientStop Color="#FF757575" Offset="1"/>
+			<GradientStop Color="#FFA8A8A8" Offset="0.59"/>
+			<GradientStop Color="#FF9A9A9A" Offset="0.54"/>
+		</LinearGradientBrush>
+	</Window.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.2*" />
+            <ColumnDefinition Width="0.8*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.088*" />
+            <RowDefinition Height="0.425*"/>
+            <RowDefinition Height="0.07*"/>
+            <RowDefinition Height="0.417*" />
+        </Grid.RowDefinitions>
+        <ListBox Grid.Row="3" Margin="0,-4,3,3" Background="Transparent"
+                 SelectedItem="{Binding SelectedLedStatus}"
+                 IsSynchronizedWithCurrentItem="True"
+                 ItemsSource="{Binding Source={StaticResource EnumValues}}" 
+                 ItemContainerStyle="{DynamicResource LedListBoxItemStyle}" BorderThickness="0,1,1,1" Padding="0,4,0,0" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+        <Border BorderBrush="#FF30A5E0" BorderThickness="0" Margin="0,2,2,4" Grid.Row="2" Padding="0,2,0,0">
+        	<Border.Background>
+        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+        			<GradientStop Color="#FF19A5EB" Offset="0"/>
+        			<GradientStop Color="#FF30A5E0" Offset="1"/>
+        			<GradientStop Color="#FF016A9F" Offset="0.667"/>
+        		</LinearGradientBrush>
+        	</Border.Background>
+        	<Border.Effect>
+        		<DropShadowEffect Opacity="0.55" BlurRadius="4" ShadowDepth="2"/>
+        	</Border.Effect>
+			<StackPanel>
+				<Label Content="Onboard LED" Template="{DynamicResource LabelControlTemplate1}"/>
+			</StackPanel>
+        </Border>
+        <Border Grid.ColumnSpan="2" Margin="0" BorderThickness="0,0,0,1" BorderBrush="Black" Padding="3,2,0,0" >
+        	<Border.Effect>
+        		<DropShadowEffect Direction="280" BlurRadius="3" ShadowDepth="3" Opacity="0.795" Color="#FF838383"/>
+        	</Border.Effect>
+        	<Border.Background>
+        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+        			<GradientStop Color="#FFAAAAAA" Offset="0.001"/>
+        			<GradientStop Color="#FF8A8A8A" Offset="1"/>
+        			<GradientStop Color="#FFCCCCCC" Offset="0.317"/>
+        		</LinearGradientBrush>
+        	</Border.Background>
+			<Grid >
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="9*"></ColumnDefinition>
+					<ColumnDefinition></ColumnDefinition>
+				</Grid.ColumnDefinitions>
+        			<TextBlock TextWrapping="Wrap" Text="HiTechnic Protoboard Configuration Tool For MSRDS" FontSize="18.667" Foreground="#FF007688" Height="24.83" VerticalAlignment="Top" FontWeight="Bold" d:LayoutOverrides="Width">
+        				<TextBlock.Effect>
+        					<DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFF6F6F6"/>
+        				</TextBlock.Effect>
+        			</TextBlock>
+					<Button Grid.Column="1" Template="{DynamicResource ExitButtonControlTemplate1}"></Button>
+        		</Grid>
+        		
+        </Border>
+        <Button Content="Button" Command="{Binding SendI2cCommand}" Height="28.267" Margin="16.267,16.8,23.2,0" Grid.Row="1" VerticalAlignment="Top"/>
+    </Grid>
+</Window>
