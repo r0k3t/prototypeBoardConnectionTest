@@ -74,10 +74,10 @@ namespace prototypeBoardConnectionTest
 
         internal void SendI2cRead()
         {
-            
-            prototypeBoard.I2cReadRequest request = new prototypeBoard.I2cReadRequest
+
+            prototypeBoard.ReadConfig request = new prototypeBoard.ReadConfig
             {
-                expectedResponseSize = 15,
+                ExpectedResponseSize = 15,
                 TxData = new byte[] { 0x10, 0x41 }
             };
             Arbiter.Choice(_prototypeBoardOperations.ReadFromI2cAddress(request),

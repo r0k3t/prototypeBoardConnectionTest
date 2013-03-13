@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:prototypeBoardConnectionTest"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Height="400" Width="600" ShowInTaskbar="False" ResizeMode="NoResize" Topmost="True" Title="HiTechnic Prototype Board" ToolTip="Configure HiTechnic Prototype Board (MSRDS)" WindowStyle="None">
+        Height="400" Width="600" ShowInTaskbar="False" ResizeMode="CanResizeWithGrip" Topmost="True" Title="HiTechnic Prototype Board" ToolTip="Configure HiTechnic Prototype Board (MSRDS)" WindowStyle="ThreeDBorderWindow">
     <Window.Resources>
     	<ResourceDictionary>
     		<ResourceDictionary.MergedDictionaries>
@@ -307,7 +307,7 @@
 					<ColumnDefinition Width="9*"></ColumnDefinition>
 					<ColumnDefinition></ColumnDefinition>
 				</Grid.ColumnDefinitions>
-        			<TextBlock TextWrapping="Wrap" Text="HiTechnic Protoboard Configuration Tool For MSRDS" FontSize="18.667" Foreground="#FF007688" Height="24.83" VerticalAlignment="Top" FontWeight="Bold" d:LayoutOverrides="Width">
+        			<TextBlock TextWrapping="Wrap" Text="HiTechnic Protoboard Configuration Tool For MSRDS" FontSize="18.667" Foreground="#FF000DCF" Height="24.83" VerticalAlignment="Top" FontWeight="Bold" d:LayoutOverrides="Width">
         				<TextBlock.Effect>
         					<DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFF6F6F6"/>
         				</TextBlock.Effect>
