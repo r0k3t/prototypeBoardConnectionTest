@@ -12,7 +12,7 @@
 [assembly: global::System.Reflection.AssemblyProductAttribute("prototypeBoardConnectionTest")]
 [assembly: global::System.Reflection.AssemblyTitleAttribute("prototypeBoardConnectionTest")]
 [assembly: global::Microsoft.Dss.Core.Attributes.ServiceDeclarationAttribute(global::Microsoft.Dss.Core.Attributes.DssServiceDeclaration.Transform, SourceAssemblyKey="prototypeBoardConnectionTest.Y2012.M10, Version=1.0.0.0, Culture=neutral, PublicK" +
-    "eyToken=c4ad29636fb3ed1b")]
+    "eyToken=aeea0a482f1d42d7")]
 [assembly: global::System.Security.SecurityTransparentAttribute()]
 [assembly: global::System.Security.SecurityRulesAttribute(global::System.Security.SecurityRuleSet.Level1)]
 
@@ -26,19 +26,19 @@ namespace Dss.Transforms.TransformprototypeBoardConnectionTest {
         }
         
         public static void Register() {
-            global::Microsoft.Dss.Core.Transforms.TransformBase.AddProxyTransform(typeof(global::prototypeBoardConnectionTest.Proxy.prototypeBoardConnectionTestState), new global::Microsoft.Dss.Core.Attributes.Transform(prototypeBoardConnectionTest_Proxy_prototypeBoardConnectionTestState_TO_prototypeBoardConnectionTest_prototypeBoardConnectionTestState));
-            global::Microsoft.Dss.Core.Transforms.TransformBase.AddSourceTransform(typeof(global::prototypeBoardConnectionTest.prototypeBoardConnectionTestState), new global::Microsoft.Dss.Core.Attributes.Transform(prototypeBoardConnectionTest_prototypeBoardConnectionTestState_TO_prototypeBoardConnectionTest_Proxy_prototypeBoardConnectionTestState));
+            global::Microsoft.Dss.Core.Transforms.TransformBase.AddProxyTransform(typeof(global::prototypeBoardConnectionTest.Proxy.PrototypeBoardConnectionTestState), new global::Microsoft.Dss.Core.Attributes.Transform(prototypeBoardConnectionTest_Proxy_PrototypeBoardConnectionTestState_TO_prototypeBoardConnectionTest_PrototypeBoardConnectionTestState));
+            global::Microsoft.Dss.Core.Transforms.TransformBase.AddSourceTransform(typeof(global::prototypeBoardConnectionTest.PrototypeBoardConnectionTestState), new global::Microsoft.Dss.Core.Attributes.Transform(prototypeBoardConnectionTest_PrototypeBoardConnectionTestState_TO_prototypeBoardConnectionTest_Proxy_PrototypeBoardConnectionTestState));
         }
         
-        private static global::prototypeBoardConnectionTest.Proxy.prototypeBoardConnectionTestState _cachedInstance0 = new global::prototypeBoardConnectionTest.Proxy.prototypeBoardConnectionTestState();
+        private static global::prototypeBoardConnectionTest.Proxy.PrototypeBoardConnectionTestState _cachedInstance0 = new global::prototypeBoardConnectionTest.Proxy.PrototypeBoardConnectionTestState();
         
-        private static global::prototypeBoardConnectionTest.prototypeBoardConnectionTestState _cachedInstance = new global::prototypeBoardConnectionTest.prototypeBoardConnectionTestState();
+        private static global::prototypeBoardConnectionTest.PrototypeBoardConnectionTestState _cachedInstance = new global::prototypeBoardConnectionTest.PrototypeBoardConnectionTestState();
         
-        public static object prototypeBoardConnectionTest_Proxy_prototypeBoardConnectionTestState_TO_prototypeBoardConnectionTest_prototypeBoardConnectionTestState(object transformFrom) {
+        public static object prototypeBoardConnectionTest_Proxy_PrototypeBoardConnectionTestState_TO_prototypeBoardConnectionTest_PrototypeBoardConnectionTestState(object transformFrom) {
             return _cachedInstance;
         }
         
-        public static object prototypeBoardConnectionTest_prototypeBoardConnectionTestState_TO_prototypeBoardConnectionTest_Proxy_prototypeBoardConnectionTestState(object transformFrom) {
+        public static object prototypeBoardConnectionTest_PrototypeBoardConnectionTestState_TO_prototypeBoardConnectionTest_Proxy_PrototypeBoardConnectionTestState(object transformFrom) {
             return _cachedInstance0;
         }
     }

@@ -4,9 +4,14 @@ namespace prototypeBoardConnectionTest.UI.ViewModel
 {
     internal class MainWindowViewModel: BaseViewModel
     {
-        private string _deviceAddress;
-        private string _readFromAddress;
+        private int _deviceAddress;
+        private int _readFromAddress;
         private int _expectedResponseSize;
+
+        private string _deviceAddressHexString;
+        private string _readFromAddressHexString;
+        private string _expectedResponseSizeHexString;
+
         private LedStatus _selectedLedStatus;
         public RelayCommand SetButtonCommand { get; set; }
         public RelayCommand SendI2CCommand { get; set; }
@@ -33,22 +38,24 @@ namespace prototypeBoardConnectionTest.UI.ViewModel
             }
         }
 
-        public string DeviceAddress
+        public int DeviceAddress
         {
             get { return _deviceAddress; }
             set
             {
                 _deviceAddress = value;
+                DeviceAddressHexString = string.Format("0x{0}",_deviceAddress.ToString("X"));
                 OnPropertyChanged("DeviceAddress");
             }
         }
 
-        public string ReadFromAddress
+        public int ReadFromAddress
         {
             get { return _readFromAddress; }
             set
             {
                 _readFromAddress = value;
+                ReadFromAddressHexString = string.Format("0x{0}", _readFromAddress.ToString("X"));
                 OnPropertyChanged("ReadFromAddress");
             }
         }
@@ -59,19 +66,44 @@ namespace prototypeBoardConnectionTest.UI.ViewModel
             set
             {
                 _expectedResponseSize = value;
+                ExpectedResponseSizeHexString = string.Format("0x{0}", _expectedResponseSize.ToString("X"));
                 OnPropertyChanged("ExpectedResponseSize");
+            }
+        }
+
+        public string DeviceAddressHexString
+        {
+            get { return _deviceAddressHexString; }
+            set
+            {
+                _deviceAddressHexString = value;
+                OnPropertyChanged("DeviceAddressHexString");
+            }
+        }
+
+        public string ReadFromAddressHexString
+        {
+            get { return _readFromAddressHexString; }
+            set
+            {
+                _readFromAddressHexString = value;
+                OnPropertyChanged("ReadFromAddressHexString");
+            }
+        }
+
+        public string ExpectedResponseSizeHexString
+        {
+            get { return _expectedResponseSizeHexString; }
+            set
+            {
+                _expectedResponseSizeHexString = value;
+                OnPropertyChanged("ExpectedResponseSizeHexString");
             }
         }
 
         public void SendI2CRead(object o)
         {
-            int deviceAddress;
-            int.TryParse(_deviceAddress, out deviceAddress);
-
-            int readFromAddress;
-            int.TryParse(_readFromAddress, out readFromAddress);
-
-            _service.SendI2CRead((byte)deviceAddress, (byte)readFromAddress, _expectedResponseSize);
+            _service.SendI2CRead((byte)_deviceAddress, (byte)_readFromAddress, _expectedResponseSize);
         }
     }
 }

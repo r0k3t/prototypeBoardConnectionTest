@@ -12,7 +12,7 @@
 [assembly: global::System.Reflection.AssemblyProductAttribute("prototypeBoardConnectionTest")]
 [assembly: global::System.Reflection.AssemblyTitleAttribute("prototypeBoardConnectionTest")]
 [assembly: global::Microsoft.Dss.Core.Attributes.ServiceDeclarationAttribute(global::Microsoft.Dss.Core.Attributes.DssServiceDeclaration.Proxy, SourceAssemblyKey="prototypeBoardConnectionTest.Y2012.M10, Version=1.0.0.0, Culture=neutral, PublicK" +
-    "eyToken=c4ad29636fb3ed1b")]
+    "eyToken=aeea0a482f1d42d7")]
 [assembly: global::System.Security.SecurityTransparentAttribute()]
 [assembly: global::System.Security.SecurityRulesAttribute(global::System.Security.SecurityRuleSet.Level1)]
 
@@ -20,49 +20,49 @@ namespace prototypeBoardConnectionTest.Proxy {
     
     
     [global::Microsoft.Dss.Core.Attributes.DataContractAttribute(Namespace="http://schemas.tempuri.org/2012/10/prototypeboardconnectiontest.html")]
-    [global::System.Xml.Serialization.XmlRootAttribute(Namespace="http://schemas.tempuri.org/2012/10/prototypeboardconnectiontest.html", ElementName="prototypeBoardConnectionTestState")]
-    public class prototypeBoardConnectionTestState : global::Microsoft.Dss.Core.IDssSerializable, global::System.ICloneable {
+    [global::System.Xml.Serialization.XmlRootAttribute(Namespace="http://schemas.tempuri.org/2012/10/prototypeboardconnectiontest.html", ElementName="PrototypeBoardConnectionTestState")]
+    public class PrototypeBoardConnectionTestState : global::Microsoft.Dss.Core.IDssSerializable, global::System.ICloneable {
         
-        public prototypeBoardConnectionTestState() {
+        public PrototypeBoardConnectionTestState() {
         }
         
         /// <summary>
-        ///Copies the data member values of the current prototypeBoardConnectionTestState to the specified target object
+        ///Copies the data member values of the current PrototypeBoardConnectionTestState to the specified target object
         ///</summary>
         ///<param name="target">target object (must be an instance of)</param>
         public virtual void CopyTo(Microsoft.Dss.Core.IDssSerializable target) {
-            global::prototypeBoardConnectionTest.Proxy.prototypeBoardConnectionTestState typedTarget = ((global::prototypeBoardConnectionTest.Proxy.prototypeBoardConnectionTestState)(target));
+            global::prototypeBoardConnectionTest.Proxy.PrototypeBoardConnectionTestState typedTarget = ((global::prototypeBoardConnectionTest.Proxy.PrototypeBoardConnectionTestState)(target));
         }
         
         /// <summary>
-        ///Clones prototypeBoardConnectionTestState
+        ///Clones PrototypeBoardConnectionTestState
         ///</summary>
         ///<returns>cloned value</returns>
         public virtual object Clone() {
-            global::prototypeBoardConnectionTest.Proxy.prototypeBoardConnectionTestState target0 = new global::prototypeBoardConnectionTest.Proxy.prototypeBoardConnectionTestState();
+            global::prototypeBoardConnectionTest.Proxy.PrototypeBoardConnectionTestState target0 = new global::prototypeBoardConnectionTest.Proxy.PrototypeBoardConnectionTestState();
             this.CopyTo(target0);
             return target0;
         }
         
         /// <summary>
-        ///Serializes the data member values of the current prototypeBoardConnectionTestState to the specified writer
+        ///Serializes the data member values of the current PrototypeBoardConnectionTestState to the specified writer
         ///</summary>
         ///<param name="writer">the writer to which to serialize</param>
         public virtual void Serialize(System.IO.BinaryWriter writer) {
         }
         
         /// <summary>
-        ///Deserializes prototypeBoardConnectionTestState
+        ///Deserializes PrototypeBoardConnectionTestState
         ///</summary>
         ///<param name="reader">the reader from which to deserialize</param>
-        ///<returns>deserialized prototypeBoardConnectionTestState</returns>
+        ///<returns>deserialized PrototypeBoardConnectionTestState</returns>
         public virtual object Deserialize(System.IO.BinaryReader reader) {
             return this;
         }
     }
     
     [global::System.Xml.Serialization.XmlTypeAttribute(IncludeInSchema=false)]
-    public class Get : global::Microsoft.Dss.ServiceModel.Dssp.Get<global::Microsoft.Dss.ServiceModel.Dssp.GetRequestType, global:: Microsoft.Ccr.Core.PortSet<global::prototypeBoardConnectionTest.Proxy.prototypeBoardConnectionTestState, global:: W3C.Soap.Fault>> {
+    public class Get : global::Microsoft.Dss.ServiceModel.Dssp.Get<global::Microsoft.Dss.ServiceModel.Dssp.GetRequestType, global:: Microsoft.Ccr.Core.PortSet<global::prototypeBoardConnectionTest.Proxy.PrototypeBoardConnectionTestState, global:: W3C.Soap.Fault>> {
         
         public Get() {
         }
@@ -71,15 +71,15 @@ namespace prototypeBoardConnectionTest.Proxy {
                 base(body) {
         }
         
-        public Get(global::Microsoft.Dss.ServiceModel.Dssp.GetRequestType body, global::Microsoft.Ccr.Core.PortSet<global::prototypeBoardConnectionTest.Proxy.prototypeBoardConnectionTestState, global:: W3C.Soap.Fault> responsePort) : 
+        public Get(global::Microsoft.Dss.ServiceModel.Dssp.GetRequestType body, global::Microsoft.Ccr.Core.PortSet<global::prototypeBoardConnectionTest.Proxy.PrototypeBoardConnectionTestState, global:: W3C.Soap.Fault> responsePort) : 
                 base(body, responsePort) {
         }
     }
     
     [global::System.Xml.Serialization.XmlTypeAttribute(IncludeInSchema=false)]
-    public class prototypeBoardConnectionTestOperations : global::Microsoft.Ccr.Core.PortSet<global::Microsoft.Dss.ServiceModel.Dssp.DsspDefaultLookup, global:: Microsoft.Dss.ServiceModel.Dssp.DsspDefaultDrop, global:: prototypeBoardConnectionTest.Proxy.Get> {
+    public class PrototypeBoardConnectionTestOperations : global::Microsoft.Ccr.Core.PortSet<global::Microsoft.Dss.ServiceModel.Dssp.DsspDefaultLookup, global:: Microsoft.Dss.ServiceModel.Dssp.DsspDefaultDrop, global:: prototypeBoardConnectionTest.Proxy.Get> {
         
-        public prototypeBoardConnectionTestOperations() {
+        public PrototypeBoardConnectionTestOperations() {
         }
         
         public virtual global::Microsoft.Ccr.Core.PortSet<global::Microsoft.Dss.ServiceModel.Dssp.LookupResponse, global::W3C.Soap.Fault> DsspDefaultLookup() {
@@ -146,7 +146,7 @@ namespace prototypeBoardConnectionTest.Proxy {
             return operation.ResponsePort;
         }
         
-        public virtual global::Microsoft.Ccr.Core.PortSet<global::prototypeBoardConnectionTest.Proxy.prototypeBoardConnectionTestState, global:: W3C.Soap.Fault> Get() {
+        public virtual global::Microsoft.Ccr.Core.PortSet<global::prototypeBoardConnectionTest.Proxy.PrototypeBoardConnectionTestState, global:: W3C.Soap.Fault> Get() {
             global::Microsoft.Dss.ServiceModel.Dssp.GetRequestType body = new global::Microsoft.Dss.ServiceModel.Dssp.GetRequestType();
             global::prototypeBoardConnectionTest.Proxy.Get operation = new global::prototypeBoardConnectionTest.Proxy.Get(body);
             this.Post(operation);
@@ -160,7 +160,7 @@ namespace prototypeBoardConnectionTest.Proxy {
             return operation.ResponsePort;
         }
         
-        public virtual global::Microsoft.Ccr.Core.PortSet<global::prototypeBoardConnectionTest.Proxy.prototypeBoardConnectionTestState, global:: W3C.Soap.Fault> Get(global::Microsoft.Dss.ServiceModel.Dssp.GetRequestType body) {
+        public virtual global::Microsoft.Ccr.Core.PortSet<global::prototypeBoardConnectionTest.Proxy.PrototypeBoardConnectionTestState, global:: W3C.Soap.Fault> Get(global::Microsoft.Dss.ServiceModel.Dssp.GetRequestType body) {
             if ((body == null)) {
                 body = new global::Microsoft.Dss.ServiceModel.Dssp.GetRequestType();
             }
@@ -221,10 +221,10 @@ namespace prototypeBoardConnectionTest.Proxy {
     public class CombinedOperationsPort : global::Microsoft.Dss.Core.DssCombinedOperationsPort {
         
         public CombinedOperationsPort() {
-            this.prototypeBoardConnectionTestOperations = new global::prototypeBoardConnectionTest.Proxy.prototypeBoardConnectionTestOperations();
-            base.Initialize(new global::Microsoft.Dss.Core.DssOperationsPortMetadata(this.prototypeBoardConnectionTestOperations, "http://schemas.tempuri.org/2012/10/prototypeboardconnectiontest.html", "prototypeBoardConnectionTestOperations", ""));
+            this.PrototypeBoardConnectionTestOperations = new global::prototypeBoardConnectionTest.Proxy.PrototypeBoardConnectionTestOperations();
+            base.Initialize(new global::Microsoft.Dss.Core.DssOperationsPortMetadata(this.PrototypeBoardConnectionTestOperations, "http://schemas.tempuri.org/2012/10/prototypeboardconnectiontest.html", "PrototypeBoardConnectionTestOperations", ""));
         }
         
-        public global::prototypeBoardConnectionTest.Proxy.prototypeBoardConnectionTestOperations prototypeBoardConnectionTestOperations;
+        public global::prototypeBoardConnectionTest.Proxy.PrototypeBoardConnectionTestOperations PrototypeBoardConnectionTestOperations;
     }
 }

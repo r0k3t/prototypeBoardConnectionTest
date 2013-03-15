@@ -6,31 +6,34 @@ using Microsoft.Ccr.Core;
 using Microsoft.Dss.Core.Attributes;
 using Microsoft.Dss.ServiceModel.Dssp;
 using Microsoft.Dss.ServiceModel.DsspServiceBase;
+using prototypeBoardConnectionTest.UI;
+using prototypeBoardConnectionTest.UI.ViewModel;
 using prototypeBoard = Microsoft.Robotics.Services.Sample.HiTechnic.PrototypeBoard.Proxy;
 using Microsoft.Robotics.Services.Sample.Lego.Nxt.Commands;
 using ccrwpf = Microsoft.Ccr.Adapters.Wpf;
+using System.Diagnostics;
 
 namespace prototypeBoardConnectionTest
 {
     [Contract(Contract.Identifier)]
     [DisplayName("prototypeBoardConnectionTest")]
     [Description("prototypeBoardConnectionTest service (no description provided)")]
-    internal class prototypeBoardConnectionTestService : DsspServiceBase
+    internal class PrototypeBoardConnectionTestService : DsspServiceBase
     {
         [Partner("UserHiTechnicPrototypeBoard", Contract = prototypeBoard.Contract.Identifier, CreationPolicy = PartnerCreationPolicy.UseExistingOrCreate)] 
         private readonly prototypeBoard.PrototypeBoardOperations _prototypeBoardOperations = new prototypeBoard.PrototypeBoardOperations();
 
         [ServicePort("/prototypeBoardConnectionTest", AllowMultipleInstances = true)] 
-        private prototypeBoardConnectionTestOperations _mainPort = new prototypeBoardConnectionTestOperations();
+        private PrototypeBoardConnectionTestOperations _mainPort = new PrototypeBoardConnectionTestOperations();
 
         [ServiceState] 
-        private prototypeBoardConnectionTestState _state = new prototypeBoardConnectionTestState();
+        private PrototypeBoardConnectionTestState _state = new PrototypeBoardConnectionTestState();
 
         ccrwpf.WpfServicePort _wpfServicePort;
 
         private ControlWindow _userInterface;
 
-        public prototypeBoardConnectionTestService(DsspServiceCreationPort creationPort)
+        public PrototypeBoardConnectionTestService(DsspServiceCreationPort creationPort)
             : base(creationPort)
         {
         }
@@ -72,13 +75,13 @@ namespace prototypeBoardConnectionTest
                 }), x => { }, f => { });
         }
 
-        internal void SendI2cRead()
+        internal void SendI2CRead(byte deviceAddress, byte readFromAddress, int expectedResponseSize)
         {
 
-            prototypeBoard.ReadConfig request = new prototypeBoard.ReadConfig
+            var request = new prototypeBoard.ReadConfig
             {
-                ExpectedResponseSize = 15,
-                TxData = new byte[] { 0x10, 0x41 }
+                ExpectedResponseSize = expectedResponseSize,
+                TxData = new byte[] { deviceAddress, readFromAddress }
             };
             Arbiter.Choice(_prototypeBoardOperations.ReadFromI2cAddress(request),
                 r => 
@@ -87,6 +90,15 @@ namespace prototypeBoardConnectionTest
                 },
                 f => { });
             
+        }
+
+        internal void Exit()
+        {
+            Process[] runningProcesses = Process.GetProcessesByName("DssHost.exe");
+            foreach (Process p in runningProcesses)
+            {
+                p.Kill();
+            }
         }
     }
 }

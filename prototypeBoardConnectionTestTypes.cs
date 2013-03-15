@@ -17,16 +17,16 @@ namespace prototypeBoardConnectionTest
 	}
 	
 	[DataContract]
-	public class prototypeBoardConnectionTestState
+	public class PrototypeBoardConnectionTestState
 	{
 	}
 	
 	[ServicePort]
-	public class prototypeBoardConnectionTestOperations : PortSet<DsspDefaultLookup, DsspDefaultDrop, Get>
+	public class PrototypeBoardConnectionTestOperations : PortSet<DsspDefaultLookup, DsspDefaultDrop, Get>
 	{
 	}
 	
-	public class Get : Get<GetRequestType, PortSet<prototypeBoardConnectionTestState, Fault>>
+	public class Get : Get<GetRequestType, PortSet<PrototypeBoardConnectionTestState, Fault>>
 	{
 		public Get()
 		{
@@ -37,7 +37,7 @@ namespace prototypeBoardConnectionTest
 		{
 		}
 		
-		public Get(GetRequestType body, PortSet<prototypeBoardConnectionTestState, Fault> responsePort)
+		public Get(GetRequestType body, PortSet<PrototypeBoardConnectionTestState, Fault> responsePort)
 			: base(body, responsePort)
 		{
 		}

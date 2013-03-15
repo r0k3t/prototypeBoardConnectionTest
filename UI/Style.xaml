@@ -29,20 +29,57 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type TextBox}">
-					<Border d:LayoutOverrides="Width, Height" CornerRadius="0" BorderThickness="0.5,0.5,0.5,1">
-						<Border.BorderBrush>
-							<RadialGradientBrush>
-								<GradientStop Color="#379F9F9F" Offset="0"/>
-								<GradientStop Color="#FF292929" Offset="0.594"/>
-							</RadialGradientBrush>
-						</Border.BorderBrush>
+					<Border d:LayoutOverrides="Width, Height" Padding="1" CornerRadius="2,2,0,0" >
 						<Border.Background>
-							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-								<GradientStop Color="#B2D4D4D4"/>
-								<GradientStop Color="#DCFFFFFF" Offset="1"/>
-							</LinearGradientBrush>
+							<RadialGradientBrush RadiusY="0.615" RadiusX="1.406">
+								<RadialGradientBrush.RelativeTransform>
+									<TransformGroup>
+										<ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.922" ScaleY="1.969"/>
+										<SkewTransform CenterY="0.5" CenterX="0.5"/>
+										<RotateTransform CenterY="0.5" CenterX="0.5"/>
+										<TranslateTransform X="-0.19" Y="-0.51"/>
+									</TransformGroup>
+								</RadialGradientBrush.RelativeTransform>
+								<GradientStop Color="#FF545454" Offset="1"/>
+								<GradientStop Color="#EFFFFFFF"/>
+								<GradientStop Color="#FF878787" Offset="1"/>
+							</RadialGradientBrush>
 						</Border.Background>
-						<ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Margin="0,0,4,4"/>
+						<Border>
+							<Border.Background>
+								<RadialGradientBrush RadiusX="2.736" RadiusY="1.788" Center="0.125,0.626" GradientOrigin="0.125,0.626">
+									<GradientStop Color="#76000000" Offset="0.849"/>
+									<GradientStop Color="White" Offset="0.231"/>
+								</RadialGradientBrush>
+							</Border.Background>
+							<Border CornerRadius="0" BorderThickness="0.5,0.5,0.5,1">
+								<Border.BorderBrush>
+									<RadialGradientBrush RadiusY="0.63" RadiusX="0.63">
+										<GradientStop Color="#C5BEBEBE" Offset="0.676"/>
+										<GradientStop Color="#FFADADAD" Offset="0.303"/>
+									</RadialGradientBrush>
+								</Border.BorderBrush>
+								<Border.Background>
+									<RadialGradientBrush RadiusY="2.163" Center="0.209,1.328" GradientOrigin="0.209,1.328" RadiusX="0.971">
+										<RadialGradientBrush.RelativeTransform>
+											<TransformGroup>
+												<ScaleTransform CenterY="0.857" CenterX="0.546" ScaleY="1" ScaleX="1"/>
+												<SkewTransform AngleY="0" AngleX="0" CenterY="0.857" CenterX="0.546"/>
+												<RotateTransform Angle="-18.501" CenterY="0.857" CenterX="0.546"/>
+												<TranslateTransform/>
+											</TransformGroup>
+										</RadialGradientBrush.RelativeTransform>
+										<GradientStop Color="#87898989" Offset="0.592"/>
+										<GradientStop Color="#DCE0E0E0"/>
+									</RadialGradientBrush>
+								</Border.Background>
+								<ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Margin="1" Foreground="#FF9D9D9D" VerticalAlignment="Center" HorizontalAlignment="Center">
+									<ScrollViewer.Effect>
+										<DropShadowEffect BlurRadius="1" ShadowDepth="1" Opacity="0.525"/>
+									</ScrollViewer.Effect>
+								</ScrollViewer>
+							</Border>
+						</Border>
 					</Border>
 					<ControlTemplate.Triggers>
 						<Trigger Property="IsEnabled" Value="false">
@@ -53,7 +90,19 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-    
+    <Style x:Key="hexLabel" TargetType="Label">
+    	<Setter Property="Foreground" Value="#C56A8785"/>
+    	<Setter Property="Padding" Value="1,1,0,1"/>
+    	<Setter Property="HorizontalAlignment" Value="Center"/>
+    	<Setter Property="VerticalAlignment" Value="Center"/>
+    	<Setter Property="Effect">
+    		<Setter.Value>
+    			<DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFADADAD"/>
+    		</Setter.Value>
+    	</Setter>
+    	<Setter Property="HorizontalContentAlignment" Value="Left"/>
+    	<Setter Property="VerticalContentAlignment" Value="Top"/>
+    </Style>
 
     
 	

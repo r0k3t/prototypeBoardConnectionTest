@@ -10,7 +10,7 @@
         xmlns:converters="clr-namespace:prototypeBoardConnectionTest.UI.Converters"
         x:Class="prototypeBoardConnectionTest.UI.ControlWindow"
         mc:Ignorable="d"
-        Height="410" Width="600" ShowInTaskbar="False" ResizeMode="CanResizeWithGrip" Topmost="True" Title="HiTechnic Prototype Board" ToolTip="Configure HiTechnic Prototype Board (MSRDS)" WindowStyle="ThreeDBorderWindow">
+        Height="540" Width="700" ShowInTaskbar="False" ResizeMode="CanResizeWithGrip" Topmost="True" Title="HiTechnic Prototype Board" ToolTip="Configure HiTechnic Prototype Board (MSRDS)" WindowStyle="ThreeDBorderWindow">
     <Window.Resources>
     	<ResourceDictionary>
     		<ResourceDictionary.MergedDictionaries>
@@ -137,7 +137,11 @@
             </Style>
             <ControlTemplate x:Key="LabelControlTemplate1" TargetType="{x:Type Label}">
             	<Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-            		<ContentControl Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2" FontFamily="Narkisim" Foreground="WhiteSmoke"/>
+            		<Label Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2" FontSize="14.667" Padding="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Normal" Foreground="White">
+            			<Label.Effect>
+            				<DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FF00A9FF"/>
+            			</Label.Effect>
+            		</Label>
              	</Grid>
             </ControlTemplate>
             <ControlTemplate x:Key="ExitButtonControlTemplate1" TargetType="{x:Type Button}">
@@ -262,7 +266,7 @@
     				<Setter.Value>
     					<ControlTemplate TargetType="{x:Type Label}">
     						<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true" VerticalAlignment="Center" HorizontalAlignment="Left">
-    							<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+    							<ContentPresenter RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     						</Border>
     						<ControlTemplate.Triggers>
     							<Trigger Property="IsEnabled" Value="false">
@@ -273,6 +277,169 @@
     				</Setter.Value>
     			</Setter>
     		</Style>
+    		<ControlTemplate x:Key="ButtonControlTemplate1" TargetType="{x:Type Button}">
+    			<Grid x:Name="grid" RenderTransformOrigin="0.5,0.5">
+    				<Grid.RenderTransform>
+    					<TransformGroup>
+    						<ScaleTransform/>
+    						<SkewTransform/>
+    						<RotateTransform/>
+    						<TranslateTransform/>
+    					</TransformGroup>
+    				</Grid.RenderTransform>
+    				<VisualStateManager.VisualStateGroups>
+    					<VisualStateGroup x:Name="CommonStates">
+    						<VisualState x:Name="Normal"/>
+    						<VisualState x:Name="MouseOver">
+    							<Storyboard>
+    								<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="Highlight">
+    									<EasingColorKeyFrame KeyTime="0" Value="#FFFDFF32"/>
+    								</ColorAnimationUsingKeyFrames>
+    								<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(RadialGradientBrush.RadiusX)" Storyboard.TargetName="Highlight">
+    									<EasingDoubleKeyFrame KeyTime="0" Value="0.759"/>
+    								</DoubleAnimationUsingKeyFrames>
+    								<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(Brush.RelativeTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="Highlight">
+    									<EasingDoubleKeyFrame KeyTime="0" Value="0.789"/>
+    								</DoubleAnimationUsingKeyFrames>
+    								<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(Brush.RelativeTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="Highlight">
+    									<EasingDoubleKeyFrame KeyTime="0" Value="0.754"/>
+    								</DoubleAnimationUsingKeyFrames>
+    								<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(Brush.RelativeTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="Highlight">
+    									<EasingDoubleKeyFrame KeyTime="0" Value="0.021"/>
+    								</DoubleAnimationUsingKeyFrames>
+    								<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(Brush.RelativeTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="Highlight">
+    									<EasingDoubleKeyFrame KeyTime="0" Value="0.568"/>
+    								</DoubleAnimationUsingKeyFrames>
+    							</Storyboard>
+    						</VisualState>
+    						<VisualState x:Name="Pressed">
+    							<Storyboard>
+    								<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="Highlight">
+    									<EasingColorKeyFrame KeyTime="0" Value="#FFFDFF32"/>
+    								</ColorAnimationUsingKeyFrames>
+    								<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="Highlight">
+    									<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+    								</DoubleAnimationUsingKeyFrames>
+    								<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="grid">
+    									<EasingDoubleKeyFrame KeyTime="0" Value="0.95"/>
+    								</DoubleAnimationUsingKeyFrames>
+    								<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="grid">
+    									<EasingDoubleKeyFrame KeyTime="0" Value="0.95"/>
+    								</DoubleAnimationUsingKeyFrames>
+    								<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(Brush.RelativeTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="Highlight">
+    									<EasingDoubleKeyFrame KeyTime="0" Value="0.001"/>
+    								</DoubleAnimationUsingKeyFrames>
+    								<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(Brush.RelativeTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="Highlight">
+    									<EasingDoubleKeyFrame KeyTime="0" Value="0.678"/>
+    								</DoubleAnimationUsingKeyFrames>
+    							</Storyboard>
+    						</VisualState>
+    						<VisualState x:Name="Disabled">
+    							<Storyboard>
+    								<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="Glass">
+    									<EasingColorKeyFrame KeyTime="0" Value="#5F747474"/>
+    								</ColorAnimationUsingKeyFrames>
+    								<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Offset)" Storyboard.TargetName="Glass">
+    									<EasingDoubleKeyFrame KeyTime="0" Value="0.574"/>
+    								</DoubleAnimationUsingKeyFrames>
+    								<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="Glass">
+    									<EasingColorKeyFrame KeyTime="0" Value="#0F000000"/>
+    								</ColorAnimationUsingKeyFrames>
+    								<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="Highlight">
+    									<EasingColorKeyFrame KeyTime="0" Value="#FFB6B6B6"/>
+    								</ColorAnimationUsingKeyFrames>
+    								<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="label">
+    									<EasingColorKeyFrame KeyTime="0" Value="Transparent"/>
+    								</ColorAnimationUsingKeyFrames>
+    								<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="label">
+    									<EasingColorKeyFrame KeyTime="0" Value="#FF727171"/>
+    								</ColorAnimationUsingKeyFrames>
+    								<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="Background">
+    									<EasingColorKeyFrame KeyTime="0" Value="#FF7A878D"/>
+    								</ColorAnimationUsingKeyFrames>
+    								<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="Background">
+    									<EasingColorKeyFrame KeyTime="0" Value="#FFBABABA"/>
+    								</ColorAnimationUsingKeyFrames>
+    							</Storyboard>
+    						</VisualState>
+    					</VisualStateGroup>
+    					<VisualStateGroup x:Name="FocusStates">
+    						<VisualState x:Name="Unfocused">
+    							<Storyboard>
+    								<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="Background">
+    									<EasingColorKeyFrame KeyTime="0" Value="#B7FFFFFF"/>
+    								</ColorAnimationUsingKeyFrames>
+    								<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="Background">
+    									<EasingColorKeyFrame KeyTime="0" Value="#BF0778B1"/>
+    								</ColorAnimationUsingKeyFrames>
+    							</Storyboard>
+    						</VisualState>
+    						<VisualState x:Name="Focused"/>
+    					</VisualStateGroup>
+    				</VisualStateManager.VisualStateGroups>
+    				<Border x:Name="Background" CornerRadius="11" >
+    					<Border.Background>
+    						<RadialGradientBrush RadiusY="1.293">
+    							<RadialGradientBrush.RelativeTransform>
+    								<TransformGroup>
+    									<ScaleTransform CenterY="0.5" CenterX="0.5"/>
+    									<SkewTransform CenterY="0.5" CenterX="0.5"/>
+    									<RotateTransform CenterY="0.5" CenterX="0.5"/>
+    									<TranslateTransform X="0.009" Y="-0.347"/>
+    								</TransformGroup>
+    							</RadialGradientBrush.RelativeTransform>
+    							<GradientStop Color="#FF0778B1" Offset="1"/>
+    							<GradientStop Color="White"/>
+    						</RadialGradientBrush>
+    					</Border.Background>
+    				</Border>
+    				<Border x:Name="Base" CornerRadius="11" Margin="2" >
+    					<Border.Background>
+    						<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+    							<GradientStop Color="Gray" Offset="1"/>
+    							<GradientStop Color="#FFC6C6C6"/>
+    						</LinearGradientBrush>
+    					</Border.Background>
+    				</Border>
+    				<Border x:Name="Highlight" CornerRadius="11" Margin="2" RenderTransformOrigin="0.5,0.5" >
+    					<Border.RenderTransform>
+    						<TransformGroup>
+    							<ScaleTransform/>
+    							<SkewTransform/>
+    							<RotateTransform/>
+    							<TranslateTransform/>
+    						</TransformGroup>
+    					</Border.RenderTransform>
+    					<Border.Background>
+    						<RadialGradientBrush RadiusY="1.236">
+    							<RadialGradientBrush.RelativeTransform>
+    								<TransformGroup>
+    									<ScaleTransform CenterY="0.5" CenterX="0.5"/>
+    									<SkewTransform CenterY="0.5" CenterX="0.5"/>
+    									<RotateTransform CenterY="0.5" CenterX="0.5"/>
+    									<TranslateTransform X="-0.007" Y="0.389"/>
+    								</TransformGroup>
+    							</RadialGradientBrush.RelativeTransform>
+    							<GradientStop Color="#00D6D6D6" Offset="1"/>
+    							<GradientStop Color="#FFF3F3F3"/>
+    						</RadialGradientBrush>
+    					</Border.Background>
+    				</Border>
+    				<Border x:Name="Glass" CornerRadius="11" Margin="2" >
+    					<Border.Background>
+    						<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+    							<GradientStop Color="#0F959595" Offset="0.566"/>
+    							<GradientStop Color="#5FFFFFFF" Offset="0.336"/>
+    						</LinearGradientBrush>
+    					</Border.Background>
+    				</Border>
+    				<Label x:Name="label" Content="{TemplateBinding Content}" HorizontalAlignment="Center" Margin="0" d:LayoutOverrides="Height" VerticalAlignment="Center" Foreground="#FF000102">
+    					<Label.Effect>
+    						<DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="White"/>
+    					</Label.Effect>
+    				</Label>
+    			</Grid>
+    		</ControlTemplate>
     		
         </ResourceDictionary>
     </Window.Resources>
@@ -286,36 +453,42 @@
 	</Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.2*" />
+            <ColumnDefinition Width="0.196*" />
+            <ColumnDefinition Width="0.004*"/>
             <ColumnDefinition Width="0.8*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.118*" />
-            <RowDefinition Height="0.395*"/>
+            <RowDefinition Height="0.086*"/>
+            <RowDefinition Height="0.309*"/>
             <RowDefinition Height="0.07*"/>
             <RowDefinition Height="0.417*" />
         </Grid.RowDefinitions>
-        <ListBox Grid.Row="3" Margin="0,-4,3,3" Background="Transparent"
-                 SelectedItem="{Binding SelectedLedStatus}"
-                 IsSynchronizedWithCurrentItem="True"
-                 ItemsSource="{Binding Source={StaticResource EnumValues}}" 
-                 ItemContainerStyle="{DynamicResource LedListBoxItemStyle}" BorderThickness="0,1,1,1" Padding="0,4,0,0" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
-        <Border BorderBrush="#FF30A5E0" BorderThickness="0" Margin="0,2,2,4" Grid.Row="2" Padding="0,2,0,0">
-        	<Border.Background>
-        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-        			<GradientStop Color="#FF19A5EB" Offset="0"/>
-        			<GradientStop Color="#FF30A5E0" Offset="1"/>
-        			<GradientStop Color="#FF016A9F" Offset="0.667"/>
-        		</LinearGradientBrush>
-        	</Border.Background>
-        	<Border.Effect>
-        		<DropShadowEffect Opacity="0.55" BlurRadius="4" ShadowDepth="2"/>
-        	</Border.Effect>
-			<StackPanel>
-				<Label Content="Onboard LED" Template="{DynamicResource LabelControlTemplate1}"/>
-			</StackPanel>
-        </Border>
-        <Border Grid.ColumnSpan="2" Margin="0" BorderThickness="0,0,0,1" BorderBrush="Black" Padding="3,2,0,0" >
+		
+		<Border BorderBrush="#FF30A5E0" BorderThickness="0" Grid.Row="1" Grid.ColumnSpan="3" Padding="0,2,0,0">
+    			<Border.Background>
+    				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    					<GradientStop Color="#FF19A5EB" Offset="0"/>
+    					<GradientStop Color="#FF30A5E0" Offset="1"/>
+    					<GradientStop Color="#FF016A9F" Offset="0.667"/>
+    				</LinearGradientBrush>
+    			</Border.Background>
+    			<Border.Effect>
+    				<DropShadowEffect Opacity="0.55" BlurRadius="4" ShadowDepth="2"/>
+    			</Border.Effect>
+    			
+    		</Border>
+		<Label Grid.Row="1" Content="Onboard LED" Template="{DynamicResource LabelControlTemplate1}"  VerticalContentAlignment="Center" Margin="0,8,0,0" Grid.ColumnSpan="2"/>
+    			
+        <Grid Margin="0,2,2,3" Grid.Row="2">
+    		<ListBox Margin="19,2,1,0" Background="Transparent"
+    			SelectedItem="{Binding SelectedLedStatus}"
+    			IsSynchronizedWithCurrentItem="True"
+    			ItemsSource="{Binding Source={StaticResource EnumValues}}" 
+    			ItemContainerStyle="{DynamicResource LedListBoxItemStyle}" Padding="0,4,0,0" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderBrush="{x:Null}"/>
+    		
+    	</Grid>
+        <Border Grid.ColumnSpan="3" Margin="0" BorderThickness="0,0,0,1" BorderBrush="Black" Padding="3,2,0,0" >
         	<Border.Effect>
         		<DropShadowEffect Direction="280" BlurRadius="3" ShadowDepth="3" Opacity="0.795" Color="#FF838383"/>
         	</Border.Effect>
@@ -331,45 +504,60 @@
 					<ColumnDefinition Width="9*"/>
 					<ColumnDefinition/>
 				</Grid.ColumnDefinitions>
-        			<TextBlock TextWrapping="Wrap" Text="HiTechnic Protoboard Configuration Tool For MSRDS" FontSize="18.667" Foreground="#FF036EA4" Height="24.83" VerticalAlignment="Center" d:LayoutOverrides="Width" Margin="15,0,0,0">
+        			<TextBlock TextWrapping="Wrap" Text="HiTechnic Protoboard Configuration Tool For MSRDS" FontSize="18.667" Foreground="#FF036EA4" Height="24.83" VerticalAlignment="Center" d:LayoutOverrides="Width" Margin="15,0,0,0" FontWeight="Bold">
         				<TextBlock.Effect>
         					<DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFF6F6F6"/>
         				</TextBlock.Effect>
         			</TextBlock>
-					<Button Grid.Column="1" Command="{Binding ExitCommand}" Template="{DynamicResource ExitButtonControlTemplate1}"/>
+					<Button Grid.Column="1" Command="{Binding ExitCommand}" Template="{DynamicResource ExitButtonControlTemplate1}">
+						<Button.Background>
+							<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+								<GradientStop Color="#FFF3F3F3" Offset="0"/>
+								<GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+								<GradientStop Color="#FFDDDDDD" Offset="0.587"/>
+								<GradientStop Color="#FFCDCDCD" Offset="1"/>
+							</LinearGradientBrush>
+						</Button.Background>
+					</Button>
         		</Grid>
         		
         </Border>
-    	<Grid Grid.Column="1" Margin="8,8,8,4" Grid.Row="1" Grid.RowSpan="2">
+    	<Grid Grid.Column="2" Margin="0" Grid.Row="1" Grid.RowSpan="3">
     		<Grid.ColumnDefinitions>
     			<ColumnDefinition Width="0.209*"/>
     			<ColumnDefinition Width="0.17*"/>
-    			<ColumnDefinition Width="0.621*"/>
+    			<ColumnDefinition Width="0.249*"/>
+    			<ColumnDefinition Width="0.372*"/>
     		</Grid.ColumnDefinitions>
     		<Grid.RowDefinitions>
     			<RowDefinition Height="0.197*"/>
     			<RowDefinition Height="0.167*"/>
-    			<RowDefinition Height="0.214*"/>
-    			<RowDefinition Height="0.154*"/>
-    			<RowDefinition Height="0.268*"/>
+    			<RowDefinition Height="0.145*"/>
+    			<RowDefinition Height="0.243*"/>
+    			<RowDefinition Height="0.248*"/>
     		</Grid.RowDefinitions>
-    		<Border Grid.ColumnSpan="3" Margin="0" Grid.Row="1" Grid.RowSpan="2">
+    		<Border Grid.ColumnSpan="4" Margin="0" Grid.Row="1" Grid.RowSpan="2" BorderThickness="1,0" BorderBrush="#FF989898">
     			<Border.Background>
     				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-    					<GradientStop Color="#FF767676" Offset="1"/>
+    					<GradientStop Color="DarkGray" Offset="1"/>
     					<GradientStop Color="#FFDADADA" Offset="0.457"/>
-    					<GradientStop Color="#FF939393" Offset="0.727"/>
-    					<GradientStop Color="#FF565656"/>
+    					<GradientStop Color="#FFBCBCBC" Offset="0.727"/>
+    					<GradientStop Color="#FF8D8D8D"/>
     				</LinearGradientBrush>
     			</Border.Background>
     		</Border>
-    		<Label Content="Device Address" Margin="2" Grid.Row="1" Style="{DynamicResource LabelStyle1}"/>
-    		<Label Content="Read From" Margin="2" Grid.Row="1" Grid.Column="1" Style="{DynamicResource LabelStyle1}"/>
-    		<Label Content="Expected Response Size" Margin="1" Grid.Row="1" Grid.Column="2" Style="{DynamicResource LabelStyle1}"/>
-    		<TextBox Margin="4" Text="{Binding DeviceAddress}" Grid.Row="2" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" Width="40" HorizontalAlignment="Left" />
-    		<TextBox Margin="4" Text="{Binding ReadFromAddress}" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" Width="40" HorizontalAlignment="Left"/>
-    		<TextBox Margin="4" Width="40" Text="{Binding ExpectedResponseSize}" Grid.Row="2" Grid.Column="2" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" HorizontalAlignment="Left"/>
-			<Button Content="Read I2C " Command="{Binding SendI2CCommand}" Margin="4" Grid.Row="4" Grid.Column="2"/>
+    		<Label Content="Device Address" Margin="5,0,2,2" Grid.Row="1" Style="{DynamicResource LabelStyle1}" VerticalAlignment="Bottom"/>
+    		<Label Content="Read From" Margin="5,0,2,2" Grid.Row="1" Grid.Column="1" Style="{DynamicResource LabelStyle1}" VerticalAlignment="Bottom"/>
+    		<Label Content="Expected Response Size" Margin="5,0,1,1" Grid.Row="1" Grid.Column="2" Style="{DynamicResource LabelStyle1}" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+    		<TextBox Margin="4,4,0,4" Text="{Binding DeviceAddress}" Grid.Row="2" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" Width="40" HorizontalAlignment="Left" />
+    		<TextBox Margin="4,4,0,4" Text="{Binding ReadFromAddress}" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" Width="40" HorizontalAlignment="Left"/>
+    		<TextBox Margin="4,4,0,4" Width="40" Text="{Binding ExpectedResponseSize}" Grid.Row="2" Grid.Column="2" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" HorizontalAlignment="Left"/>
+    		<Button Content="Read I2C " Command="{Binding SendI2CCommand}" Grid.Row="1" Grid.RowSpan="2" Grid.Column="4" Template="{DynamicResource ButtonControlTemplate1}" Grid.ColumnSpan="2" Margin="7,7,7,2"/>
+    		<Label Content="{Binding DeviceAddressHexString, TargetNullValue=0x00}" Margin="1,0,0,1" Grid.Row="3" Style="{DynamicResource hexLabel}" HorizontalAlignment="Left" />
+    		<Label Content="{Binding ReadFromAddressHexString, TargetNullValue=0x00}" Margin="0.999,0,0,1" Grid.Row="3" Grid.Column="1" Style="{DynamicResource hexLabel}" HorizontalAlignment="Left"/>
+    		<Label Content="{Binding ExpectedResponseSizeHexString, TargetNullValue=0x00}" Margin="1,0,36.83,1" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" Style="{DynamicResource hexLabel}"/>
     	</Grid>
+    	<Label Grid.Row="1" Content="Send direct command to I2C device" Template="{DynamicResource LabelControlTemplate1}"  VerticalContentAlignment="Center" Margin="9,8,0,0" Grid.Column="2" HorizontalAlignment="Left"/>
+    	<Rectangle Grid.Column="1" Fill="#FF2B9ED8" Margin="0" Grid.Row="2" Grid.RowSpan="5" StrokeThickness="0"/>
     </Grid>
 </Window>
