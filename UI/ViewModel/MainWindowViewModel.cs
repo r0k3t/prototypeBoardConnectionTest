@@ -1,16 +1,19 @@
-﻿using Microsoft.Robotics.Services.Sample.HiTechnic.PrototypeBoard.Proxy;
+﻿using System.Collections.ObjectModel;
+using Microsoft.Robotics.Services.Sample.HiTechnic.PrototypeBoard.Proxy;
 
 namespace prototypeBoardConnectionTest.UI.ViewModel
 {
-    internal class MainWindowViewModel: BaseViewModel
+    internal class MainWindowViewModel : BaseViewModel
     {
         private int _deviceAddress;
         private int _readFromAddress;
         private int _expectedResponseSize;
+        private int _theWidth;
 
         private string _deviceAddressHexString;
         private string _readFromAddressHexString;
         private string _expectedResponseSizeHexString;
+        private ObservableCollection<byte> _returnedData;
 
         private LedStatus _selectedLedStatus;
         public RelayCommand SetButtonCommand { get; set; }
@@ -25,6 +28,10 @@ namespace prototypeBoardConnectionTest.UI.ViewModel
             SetButtonCommand = new RelayCommand(x => _service.SetLedPortStatus(LedStatus.Red));
             SendI2CCommand = new RelayCommand(SendI2CRead);
             ExitCommand = new RelayCommand(x => _service.Exit());
+            DeviceAddress = 0x10;
+            ReadFromAddress = 0x41;
+            ExpectedResponseSize = 12;
+            TheWidth = 25;
         }
 
         public LedStatus SelectedLedStatus
@@ -44,7 +51,7 @@ namespace prototypeBoardConnectionTest.UI.ViewModel
             set
             {
                 _deviceAddress = value;
-                DeviceAddressHexString = string.Format("0x{0}",_deviceAddress.ToString("X"));
+                DeviceAddressHexString = string.Format("0x{0}", _deviceAddress.ToString("X"));
                 OnPropertyChanged("DeviceAddress");
             }
         }
@@ -101,9 +108,34 @@ namespace prototypeBoardConnectionTest.UI.ViewModel
             }
         }
 
+        public ObservableCollection<byte> ReturnedData
+        {
+            get { return _returnedData; }
+            set
+            {
+                _returnedData = value;
+                OnPropertyChanged("ReturnedData");
+            }
+        }
+
+        public int TheWidth
+        {
+            get { return _theWidth; }
+            set
+            {
+                _theWidth = value;
+                OnPropertyChanged("TheWidth");
+            }
+        }
+
         public void SendI2CRead(object o)
         {
-            _service.SendI2CRead((byte)_deviceAddress, (byte)_readFromAddress, _expectedResponseSize);
+            _service.SendI2CRead((byte) _deviceAddress, (byte) _readFromAddress, _expectedResponseSize, SetReturnData);
+        }
+
+        public void SetReturnData(byte[] bytes)
+        {
+            ReturnedData = new ObservableCollection<byte>(bytes);
         }
     }
 }

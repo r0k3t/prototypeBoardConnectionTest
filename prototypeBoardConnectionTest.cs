@@ -75,7 +75,7 @@ namespace prototypeBoardConnectionTest
                 }), x => { }, f => { });
         }
 
-        internal void SendI2CRead(byte deviceAddress, byte readFromAddress, int expectedResponseSize)
+        internal void SendI2CRead(byte deviceAddress, byte readFromAddress, int expectedResponseSize, Action<byte[]> successDelegate)
         {
 
             var request = new prototypeBoard.ReadConfig
@@ -83,13 +83,16 @@ namespace prototypeBoardConnectionTest
                 ExpectedResponseSize = expectedResponseSize,
                 TxData = new byte[] { deviceAddress, readFromAddress }
             };
-            Arbiter.Choice(_prototypeBoardOperations.ReadFromI2cAddress(request),
-                r => 
-                {
-                    
-                },
-                f => { });
-            
+
+            Activate(Arbiter.Choice(_prototypeBoardOperations.ReadFromI2cAddress(request),
+                                    r =>
+                                        {
+                                            successDelegate(r.Bytes);
+                                            LogInfo("I2C read successful.");
+                                        },
+                                    f => LogInfo(f.Detail.ToString())));
+
+
         }
 
         internal void Exit()

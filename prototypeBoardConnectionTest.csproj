@@ -123,6 +123,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UI\Converters\ByteToIntConverter.cs" />
     <Compile Include="UI\ViewModel\BaseViewModel.cs" />
     <Compile Include="UI\ControlWindow.xaml.cs">
       <DependentUpon>ControlWindow.xaml</DependentUpon>
